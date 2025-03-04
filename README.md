@@ -8,37 +8,35 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-#### 1.Import the standard Libraries. 
-#### 2.Set variables for assigning dataset values. 
-#### 3.Import linear regression from sklearn. 
-#### 4.Assign the points for representing in the graph. 
-#### 5.Predict the regression for marks by using the representation of the graph. 
-#### 6.Compare the graphs and hence we obtained the linear regression for the given datas.
+1. import the needed packages. 
+2. Assigning hours to x and scores to y.
+3. Plot the scatter plot.
+4. Use mse,rmse,mae formula to find the values.
 
 ## Program:
 ```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
-Developed by: Gautham Krishna S
-RegisterNumber:  212223240036
 */
 ```
-
-```
+```python
+# IMPORT REQUIRED PACKAGE
 import pandas as pd
 import numpy as np
 from sklearn.metrics import mean_absolute_error,mean_squared_error
 import matplotlib.pyplot as plt
-
+dataset=pd.read_csv('student_scores.csv')
+print(dataset)
+# READ CSV FILES
 dataset=pd.read_csv('student_scores.csv')
 print(dataset.head())
-dataset=pd.read_csv('student_scores.csv')
 print(dataset.tail())
+# COMPARE DATASET
 x=dataset.iloc[:,:-1].values
 print(x)
 y=dataset.iloc[:,1].values
 print(y)
-
+# PRINT PREDICTED VALUE
 from sklearn.model_selection import train_test_split
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
 from sklearn.linear_model import LinearRegression
@@ -47,85 +45,64 @@ reg.fit(x_train,y_train)
 y_pred = reg.predict(x_test)
 print(y_pred)
 print(y_test)
-
+# GRAPH PLOT FOR TRAINING SET
 plt.scatter(x_train,y_train,color='purple')
 plt.plot(x_train,reg.predict(x_train),color='black')
 plt.title("Hours vs Scores(Training set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
-
+# GRAPH PLOT FOR TESTING SET
 plt.scatter(x_test,y_test,color='red')
 plt.plot(x_train,reg.predict(x_train),color='black')
-plt.title("Hours vs Scores(Training set)")
+plt.title("Hours vs Scores(Testing set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
-
+# PRINT THE ERROR
 mse=mean_absolute_error(y_test,y_pred)
 print('Mean Square Error = ',mse)
 mae=mean_absolute_error(y_test,y_pred)
 print('Mean Absolute Error = ',mae)
 rmse=np.sqrt(mse)
-print("Root Mean Square Error = ",rmse)
+print("Root Mean Square Error = ",rmse)
 
 ```
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
 
 ## Output:
 
-### Head Values
-<img width="1090" alt="Screenshot 2024-04-05 at 9 36 33 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/4ddf5d62-c261-42be-8b67-6f6df35f3d36">
+To Read Head and Tail Files
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/5968514c-05e2-4d71-b132-b0acea5efd47)
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/ea9cb89a-f4b8-473d-84b8-1f92b2ee64a2)
 
 
-### Tail Values
-<img width="1090" alt="Screenshot 2024-04-05 at 9 37 06 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/dfa9fd82-e723-4ed4-aaec-ad66ffa348e1">
+Compare Dataset
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/9d7409fe-cb21-4727-9bd1-365c85ab9f1a)
+
+
+Predicted Value
+
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/44b39961-15f3-4ef1-b64f-01bd7c4fff12)
 
 
 
-### Compare Dataset
-<img width="1090" alt="Screenshot 2024-04-05 at 9 37 18 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/9118849a-2323-4b9c-a362-3dc8d060587a">
+Graph For Training Set
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/be5ed2ff-790c-4d0d-84c0-a230f9f4d2df)
 
 
-### Predication values of X and Y
-<img width="1090" alt="Screenshot 2024-04-05 at 9 37 31 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/5ed7921d-08e1-408e-8383-6899933b01ee">
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+Graph For Testing Set
 
-### Training set
-<img width="1090" alt="Screenshot 2024-04-05 at 9 37 44 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/9fae6c7e-e00d-449f-8f16-cbbe94095e76">
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/3871af46-764a-496a-ad7d-39a81d931dee)
 
 
-### Testing Set
-<img width="1090" alt="Screenshot 2024-04-05 at 9 37 50 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/bea6f3d4-6bf1-4c28-b7ff-167a07ec1d30">
+Error
 
-### MSE,MAE and RMSE
-<img width="1090" alt="Screenshot 2024-04-05 at 9 38 02 AM" src="https://github.com/gauthamkrishna7/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/141175025/0f1f6538-a2a8-4c7c-838e-8ccbca0c7b6c">
+![image](https://github.com/HIRU-VIRU/Implementation-of-Simple-Linear-Regression-Model-for-Predicting-the-Marks-Scored/assets/145972122/b2a0e793-2aef-4ae5-ad28-79ec7f2399be)
 
-<br>
-<br>
-<br>
-<br>
-<br>
 
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
